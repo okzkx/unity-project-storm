@@ -10,13 +10,13 @@ namespace Modules.EntitySample {
     internal partial struct TurretShootingSystem : ISystem {
         // A ComponentLookup provides random access to a component (looking up an entity).
         // We'll use it to extract the world space position and orientation of the spawn point (cannon nozzle).
-        private ComponentLookup<LocalToWorldTransform> m_LocalToWorldTransformFromEntity;
+        private ComponentLookup<LocalTransform> m_LocalToWorldTransformFromEntity;
 
         [BurstCompile]
         public void OnCreate(ref SystemState state) {
             // ComponentLookup structures have to be initialized once.
             // The parameter specifies if the lookups will be read only or if they should allow writes.
-            m_LocalToWorldTransformFromEntity = state.GetComponentLookup<LocalToWorldTransform>(true);
+            m_LocalToWorldTransformFromEntity = state.GetComponentLookup<LocalTransform>(true);
         }
 
         [BurstCompile]
@@ -50,7 +50,7 @@ namespace Modules.EntitySample {
     [WithAll(typeof(Shooting))]
     [BurstCompile]
     internal partial struct TurretShoot : IJobEntity {
-        [ReadOnly] public ComponentLookup<LocalToWorldTransform> LocalToWorldTransformFromEntity;
+        [ReadOnly] public ComponentLookup<LocalTransform> LocalToWorldTransformFromEntity;
         public EntityCommandBuffer ECB;
 
         // Note that the TurretAspects parameter is "in", which declares it as read only.
@@ -60,16 +60,14 @@ namespace Modules.EntitySample {
         private void Execute(in TurretAspect turret) {
             var instance = ECB.Instantiate(turret.CannonBallPrefab);
             var spawnLocalToWorld = LocalToWorldTransformFromEntity[turret.CannonBallSpawn];
-            var cannonBallTransform = UniformScaleTransform.FromPosition(spawnLocalToWorld.Value.Position);
+            var cannonBallTransform = LocalTransform.FromPosition(spawnLocalToWorld.Position);
 
             // We are about to overwrite the transform of the new instance. If we didn't explicitly
             // copy the scale it would get reset to 1 and we'd have oversized cannon balls.
-            cannonBallTransform.Scale = LocalToWorldTransformFromEntity[turret.CannonBallPrefab].Value.Scale;
-            ECB.SetComponent(instance, new LocalToWorldTransform {
-                Value = cannonBallTransform
-            });
+            cannonBallTransform.Scale = LocalToWorldTransformFromEntity[turret.CannonBallPrefab].Scale;
+            ECB.SetComponent(instance, cannonBallTransform);
             ECB.SetComponent(instance, new CannonBall {
-                Speed = spawnLocalToWorld.Value.Forward() * 20.0f
+                Speed = spawnLocalToWorld.Forward() * 20.0f
             });
             // The line below propagates the color from the turret to the cannon ball.
             ECB.SetComponent(instance, new URPMaterialPropertyBaseColor {Value = turret.Color});

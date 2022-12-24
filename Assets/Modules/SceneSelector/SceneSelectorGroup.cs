@@ -2,6 +2,7 @@
 using Unity.Scenes;
 using UnityEngine;
 
+[DisableAutoCreation]
 public abstract class SceneSelectorGroup : ComponentSystemGroup {
     protected override void OnCreate() {
         base.OnCreate();
