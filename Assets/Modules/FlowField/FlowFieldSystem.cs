@@ -17,7 +17,7 @@ namespace Modules.FlowField {
     [UpdateInGroup(typeof(FlowFieldGroup))]
     internal partial struct GroundGridSpawnSystem : ISystem {
         public void OnCreate(ref SystemState state) {
-            // state.RequireForUpdate<Config>();
+            state.RequireForUpdate<Config>();
         }
 
         [BurstCompile]
@@ -73,9 +73,9 @@ namespace Modules.FlowField {
 
         protected override void OnUpdate() {
             // var gridsBlock = GetSingleton<GridsBlock>();
-            EntityManager.DestroyEntity(GetSingletonEntity<RequiredFlowField>());
+            EntityManager.DestroyEntity(SystemAPI.GetSingletonEntity<RequiredFlowField>());
 
-            var config = GetSingleton<Config>();
+            var config = SystemAPI.GetSingleton<Config>();
             var (map, hotMap, flowField) = CreateFlowField(config.CountX, config.CountY, config.heat);
 
             var query = GetEntityQuery(typeof(GroundGrid));

@@ -1,5 +1,6 @@
-﻿namespace Modules.FlowField {
-    public class FlowFieldGroup : SceneSelectorGroup {
-        protected override string SceneName => "FlowField";
-    }
+﻿using Unity.Entities;
+
+namespace Modules.FlowField {
+    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    public class FlowFieldGroup : ComponentSystemGroup {}
 }

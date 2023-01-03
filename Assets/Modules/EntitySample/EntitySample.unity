@@ -253,7 +253,6 @@ GameObject:
   - component: {fileID: 1389665619}
   - component: {fileID: 1389665618}
   - component: {fileID: 1389665621}
-  - component: {fileID: 1389665622}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -371,19 +370,7 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &1389665622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389665617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e35c04791e4849af1aac4243116c2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1950508006
+--- !u!1 &2099880969
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,43 +378,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1950508008}
-  - component: {fileID: 1950508007}
+  - component: {fileID: 2099880971}
+  - component: {fileID: 2099880970}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: EntitySampleSubScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1950508007
+--- !u!114 &2099880970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950508006}
+  m_GameObject: {fileID: 2099880969}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a335734b1572644a6a5d09d87adc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneAsset: {fileID: 102900000, guid: ab010244d0984a840a42291f3ac3ae48, type: 3}
+  _SceneAsset: {fileID: 102900000, guid: 521308acdb49c534c9036eb8370e7b9c, type: 3}
   _HierarchyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   AutoLoadScene: 1
   _SceneGUID:
     Value:
-      x: 1142952122
-      y: 1218742541
-      z: 4052886688
-      w: 2229943459
---- !u!4 &1950508008
+      x: 3397398821
+      y: 1130140861
+      z: 2347118748
+      w: 3384270963
+--- !u!4 &2099880971
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950508006}
+  m_GameObject: {fileID: 2099880969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
