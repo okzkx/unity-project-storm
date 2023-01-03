@@ -12,16 +12,16 @@ public static class FlowFieldUtil {
         return Color.HSVToRGB(angle / 360, 1, 1);
     }
 
-    public static (NativeArray<int> map, NativeArray<float> hotMap, NativeArray<float2> flowField) CreateFlowField(int CountX, int CountY, float heat) {
-        var map = new NativeArray<int>(CountX * CountY, Allocator.TempJob);
-        var hotMap = new NativeArray<float>(CountX * CountY, Allocator.TempJob);
-        var flowField = new NativeArray<float2>(CountX * CountY, Allocator.TempJob);
+    public static (NativeArray<int> map, NativeArray<float> hotMap, NativeArray<float2> flowField) CreateFlowField(int CountX, int CountY, float heat, Allocator allocator) {
+        var map = new NativeArray<int>(CountX * CountY, allocator);
+        var hotMap = new NativeArray<float>(CountX * CountY, allocator);
+        var flowField = new NativeArray<float2>(CountX * CountY,allocator);
 
         for (int i = 0; i < hotMap.Length; i++) {
             hotMap[i] = float.MinValue;
         }
 
-        for (int col = 5; col < 70; col++) {
+        for (int col = 5; col < 50; col++) {
             map[RowCol(30, col)] = 1;
         }
 
